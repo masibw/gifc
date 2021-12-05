@@ -16,7 +16,7 @@ func NewIssue(title, content string) *Issue {
 	}
 }
 
-func (i *Issue) SetGithubInfo(nullableNumber *int, nullableUrl *string) *Issue {
+func (i *Issue) SetGithubInfo(nullableNumber *int, nullableURL *string) *Issue {
 	var number int
 	if nullableNumber == nil {
 		number = 0
@@ -25,10 +25,10 @@ func (i *Issue) SetGithubInfo(nullableNumber *int, nullableUrl *string) *Issue {
 	}
 
 	var url string
-	if nullableUrl == nil {
+	if nullableURL == nil {
 		url = ""
 	} else {
-		url = *nullableUrl
+		url = *nullableURL
 	}
 
 	return &Issue{

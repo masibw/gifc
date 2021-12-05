@@ -25,7 +25,13 @@ func NewCommentUseCase(issueRepository repository.Issue, git *entity.Git) *Comme
 func (c *CommentUseCase) InspectFile(filePath string) (err error) {
 	var file *os.File
 	file, err = os.Open(filePath)
-	defer file.Close()
+	defer func() {
+		err = file.Close()
+		if err != nil {
+			err = errors.Wrap(err, "failed to Close")
+		}
+	}()
+
 	if err != nil {
 		err = errors.Wrap(err, "failed to open file")
 		return

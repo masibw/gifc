@@ -2,6 +2,7 @@ package dir
 
 import (
 	"github.com/stretchr/testify/assert"
+	"path/filepath"
 	"testing"
 )
 
@@ -11,7 +12,6 @@ func TestListFiles(t *testing.T) {
 	if err != nil {
 		t.Fatalf("failed to list files dir: %s, err: %v", testDir, err)
 	}
-
-	expected := []string{"../../testdata/src/testdir/a.go", "../../testdata/src/testdir/b.html", "../../testdata/src/testdir/recursive/c.xml"}
+	expected := []string{filepath.Join(testDir, "/a.go"), filepath.Join(testDir, "/b.html"), filepath.Join(testDir, "recursive", "c.xml")}
 	assert.Equal(t, expected, filePaths)
 }
