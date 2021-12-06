@@ -73,7 +73,7 @@ func (c *CommentUseCase) InspectFile(filePath string) (err error) {
 		return
 	}
 
-	err = os.WriteFile(filePath, buf.Bytes(), 0666)
+	err = os.WriteFile(filePath, buf.Bytes(), 0644)
 	if err != nil {
 		err = errors.Wrap(err, "failed to write file")
 		return
